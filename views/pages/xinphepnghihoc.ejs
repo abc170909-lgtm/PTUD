@@ -1,0 +1,55 @@
+<link rel="stylesheet" href="/css/XinPhepNghiHoc.css">
+<section class="content">
+  <h2>Xin phép nghỉ học cho con</h2>
+  <div id="toast" class="toast"></div>
+
+  <div class="form-container">
+    <form id="leave-request-form">
+      <div class="form-group">
+        <label for="maHocSinh">Tên con: <span class="required">*</span></label>
+        <select id="maHocSinh" name="maHocSinh" required>
+          <option value="">-- Chọn con --</option>
+          <% hocSinhList.forEach(hs => { %>
+            <option value="<%= hs.MaHocSinh %>"><%= hs.TenHocSinh %> - Lớp <%= hs.TenLop %></option>
+          <% }); %>
+        </select>
+        <span class="error-message" id="error-maHocSinh"></span>
+      </div>
+
+      <div class="form-group">
+        <label for="ngay">Ngày nghỉ: <span class="required">*</span></label>
+        <input type="date" id="ngay" name="ngay" required>
+        <span class="error-message" id="error-ngay"></span>
+      </div>
+
+      <div class="form-group">
+        <label for="lyDoNghi">Lý do xin nghỉ: <span class="required">*</span></label>
+        <textarea id="lyDoNghi" name="lyDoNghi" rows="5" placeholder="Nhập lý do xin nghỉ học..." required></textarea>
+        <span class="error-message" id="error-lyDoNghi"></span>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn submit-btn">Gửi đơn</button>
+        <button type="button" class="btn reset-btn" id="reset-form">Làm mới</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="history-container">
+    <h3>Lịch sử xin nghỉ</h3>
+    <div class="history-filter">
+      <label for="filter-hocsinh">Lọc theo con:</label>
+      <select id="filter-hocsinh">
+        <option value="">-- Tất cả --</option>
+        <% hocSinhList.forEach(hs => { %>
+          <option value="<%= hs.MaHocSinh %>"><%= hs.TenHocSinh %></option>
+        <% }); %>
+      </select>
+    </div>
+    <div id="history-list" class="history-list">
+      <p class="no-data">Chọn con để xem lịch sử xin nghỉ</p>
+    </div>
+  </div>
+</section>
+
+<script src="/js/XinPhepNghiHoc.js"></script>
